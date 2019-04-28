@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class Heroe {
     private final String nombre;
     private final String nombreHeroico;
@@ -22,7 +24,6 @@ public class Heroe {
             this.nivelDePoder=nivelDePoder;
         }
     }
-
     private static boolean nombreIncorrecto(String nombre){
          boolean nombreCorrecto=true;
          try {
@@ -33,6 +34,46 @@ public class Heroe {
              nombreCorrecto=false;
          }
          return nombreCorrecto;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public String getNombreHeroico() {
+        return nombreHeroico;
+    }
+
+    public double getNivelDePoder() {
+        return nivelDePoder;
+    }
+
+    public void setNivelDePoder(double nivelDePoder) {
+        this.nivelDePoder = nivelDePoder;
+    }
+
+    @Override
+    public String toString() {
+        return nombre+"{"+nombreHeroico+"-"+nivelDePoder+"}";
+    }
+
+    public String info() {
+
+        return nombre+"{\nAlias:"+nombreHeroico+"\n Nvl poder:"+nivelDePoder+"}";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Heroe)) return false;
+        Heroe heroe = (Heroe) o;
+        return Objects.equals(nombre, heroe.nombre) &&
+                Objects.equals(nombreHeroico, heroe.nombreHeroico);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nombre, nombreHeroico);
     }
 }
 
