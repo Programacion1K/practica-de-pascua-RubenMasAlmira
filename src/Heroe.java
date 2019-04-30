@@ -1,6 +1,7 @@
+import java.io.File;
 import java.util.Objects;
 
-public class Heroe {
+public class Heroe implements Utilizable{
     private final String nombre;
     private final String nombreHeroico;
     //El nivel de poder se corresponde a un número superior a 0 y inferior a 100
@@ -74,6 +75,26 @@ public class Heroe {
     @Override
     public int hashCode() {
         return Objects.hash(nombre, nombreHeroico);
+    }
+
+    @Override
+    public String muestraTodos() {
+        return null;
+    }
+
+    @Override
+    public void leeDeFichero(File fichero) {
+
+    }
+
+    @Override
+    public void guardaEnFichero(File fichero) {
+
+    }
+
+    @Override
+    public void pideYAnyade() {
+
     }
 }
 
