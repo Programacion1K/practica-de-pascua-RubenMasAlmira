@@ -4,14 +4,14 @@ import java.awt.*;
 public class PanelDeCreacionDeHeroe extends JPanel {
 
 
-    JLabel nombre= new JLabel("Nombre");
-    JTextField nombreIntroducido=new JTextField();
+    private JLabel nombre= new JLabel("Nombre");
+    private JTextField nombreIntroducido=new JTextField();
 
-    JLabel nombreHeroico= new JLabel("Nombre del Heroe");
-    JTextField nombreHeroicoIntroducido=new JTextField();
+    private JLabel nombreHeroico= new JLabel("Nombre del Heroe");
+    private JTextField nombreHeroicoIntroducido=new JTextField();
 
-    JLabel nivelDePoder= new JLabel("Nivel de poder");
-    JTextField nivelDePoderIntroducido=new JTextField();
+    private JLabel nivelDePoder= new JLabel("Nivel de poder");
+    private JTextField nivelDePoderIntroducido=new JTextField();
 
 
 
@@ -23,5 +23,16 @@ public class PanelDeCreacionDeHeroe extends JPanel {
         add(nombreHeroicoIntroducido);
         add(nivelDePoder);
         add(nivelDePoderIntroducido);
+    }
+    public JTextField getNombre(){
+        return nombreIntroducido;
+    }
+
+    public JTextField getNombreHeroico(){
+        return nombreHeroicoIntroducido;
+    }
+
+    public JTextField getNivelDePoder(){
+        return nivelDePoderIntroducido;
     }
 }

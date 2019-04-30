@@ -1,41 +1,34 @@
 import java.io.File;
 import java.util.Objects;
 
-public class Heroe implements Utilizable{
+public class Heroe {
     private final String nombre;
     private final String nombreHeroico;
     //El nivel de poder se corresponde a un número superior a 0 y inferior a 100
     private double nivelDePoder;
-    Heroe(String nombreHeroico,String nombre,double nivelDePoder){
-        if(nombreHeroico==null || nombreIncorrecto(nombreHeroico)){
+    Heroe(String nombre,String nombreHeroico,double nivelDePoder){
+        if(nombreHeroico==null ){
             throw new IllegalArgumentException("El nombre introducido para el heroe es incorrecto");
-        }else{
-            this.nombreHeroico=nombreHeroico;
         }
+        this.nombreHeroico=nombreHeroico;
 
-        if(nombre==null || nombreIncorrecto(nombre)){
+        if(nombre==null){
             throw new IllegalArgumentException("El nombre introducido es incorrecto");
-        }else{
-            this.nombre=nombre;
         }
+        this.nombre = nombre;
+
 
         if(nivelDePoder<0 || nivelDePoder>100){
-            throw new IllegalArgumentException("El nivel de poder indicado para el heroe es incorrecto");
-        }else{
-            this.nivelDePoder=nivelDePoder;
+            throw new IllegalArgumentException("El nivel de poder indicado para el heroe es incorrecto.\n(Recuerde que el nivel de poder es un número entero o decimal compendido entre 0 y 100,siendo 0 el más bajo y 100 el más alto.)");
         }
+        this.nivelDePoder=nivelDePoder;
+
     }
-    private static boolean nombreIncorrecto(String nombre){
-         boolean nombreCorrecto=true;
-         try {
-             for (char c : nombre.toCharArray()) {
-                 Integer.parseInt(c+"");
-             }
-         }catch (NumberFormatException nfe){
-             nombreCorrecto=false;
-         }
-         return nombreCorrecto;
-    }
+
+   /* Heroe(String nombreHeroico,double nivelDePoder){
+        this("",nombreHeroico,nivelDePoder);
+    }*/
+
 
     public String getNombre() {
         return nombre;
@@ -60,7 +53,7 @@ public class Heroe implements Utilizable{
 
     public String info() {
 
-        return nombre+"{\nAlias:"+nombreHeroico+"\n Nvl poder:"+nivelDePoder+"}";
+        return nombre+"{\nAlias:"+nombreHeroico+"\nNvl poder:"+nivelDePoder+"}";
     }
 
     @Override
@@ -77,24 +70,5 @@ public class Heroe implements Utilizable{
         return Objects.hash(nombre, nombreHeroico);
     }
 
-    @Override
-    public String muestraTodos() {
-        return null;
-    }
-
-    @Override
-    public void leeDeFichero(File fichero) {
-
-    }
-
-    @Override
-    public void guardaEnFichero(File fichero) {
-
-    }
-
-    @Override
-    public void pideYAnyade() {
-
-    }
 }
 
