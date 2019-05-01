@@ -26,16 +26,15 @@ public class ListaHeroes implements Utilizable{
     public void leeDeFichero(File fichero) {
         try {
             List<String> leido= Files.readAllLines(fichero.toPath());
-            List<String> cadenaDelHeroeEnCreacion=new ArrayList<>();
 
             String nombreDelHeroeEnCreacion;
             String nombreHeroicoDelHeroeEnCreacion;
             double nvlDePoderDelHeroeEnCreacion;
-            for(int i=0;i<leido.size();i++){
-                nombreDelHeroeEnCreacion=leido.get(i).substring(0,leido.get(i).indexOf('{'));
-                nombreHeroicoDelHeroeEnCreacion=leido.get(i).substring(leido.get(i).indexOf('{')+1,leido.get(i).indexOf('-'));
-                nvlDePoderDelHeroeEnCreacion=Double.parseDouble(leido.get(i).substring(leido.get(i).indexOf('-')+1,leido.get(i).indexOf('}')));
-                lista.add(new Heroe(nombreDelHeroeEnCreacion,nombreHeroicoDelHeroeEnCreacion,nvlDePoderDelHeroeEnCreacion));
+            for (String heroeActual : leido) {
+                nombreDelHeroeEnCreacion = heroeActual.substring(0, heroeActual.indexOf('{'));
+                nombreHeroicoDelHeroeEnCreacion = heroeActual.substring(heroeActual.indexOf('{') + 1, heroeActual.indexOf('-'));
+                nvlDePoderDelHeroeEnCreacion = Double.parseDouble(heroeActual.substring(heroeActual.indexOf('-') + 1, heroeActual.indexOf('}')));
+                lista.add(new Heroe(nombreDelHeroeEnCreacion, nombreHeroicoDelHeroeEnCreacion, nvlDePoderDelHeroeEnCreacion));
             }
 
 
