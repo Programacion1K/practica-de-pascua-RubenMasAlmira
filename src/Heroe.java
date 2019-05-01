@@ -9,12 +9,12 @@ public class Heroe {
     //El nivel de poder se corresponde a un número superior a 0 y inferior a 100
     private double nivelDePoder;
     Heroe(String nombre,String nombreHeroico,double nivelDePoder){
-        if(nombreHeroico==null ){
+        if(nombreHeroico==null || nombreHeroico.trim().equals("") ){
             throw new IllegalArgumentException("El nombre introducido para el heroe es incorrecto");
         }
         this.nombreHeroico=nombreHeroico;
 
-        if(nombre==null){
+        if(nombre==null || nombreHeroico.trim().equals("") ){
             throw new IllegalArgumentException("El nombre introducido es incorrecto");
         }
         this.nombre = nombre.substring(0,1).toUpperCase()+nombre.substring(1).toLowerCase();
@@ -66,21 +66,5 @@ public class Heroe {
     public int hashCode() {
         return Objects.hash(nombre, nombreHeroico);
     }
-
-    public static void main(String[] args) {
-        List<String> leido=new ArrayList<>();
-        leido.add("1{1m-23.0}");
-        String nombreDelHeroeEnCreacion;
-        String nombreHeroicoDelHeroeEnCreacion;
-        String nvlDePoderDelHeroeEnCreacion;
-
-        nombreDelHeroeEnCreacion=leido.get(0).substring(0,leido.get(0).indexOf('{'));
-        nombreHeroicoDelHeroeEnCreacion=leido.get(0).substring(leido.get(0).indexOf('{')+1,leido.get(0).indexOf('-'));
-        nvlDePoderDelHeroeEnCreacion=leido.get(0).substring(leido.get(0).indexOf('-')+1,leido.get(0).indexOf('}'));
-        System.out.println(nombreDelHeroeEnCreacion);
-        System.out.println(nombreHeroicoDelHeroeEnCreacion);
-        System.out.println(nvlDePoderDelHeroeEnCreacion);
-    }
-
 }
 

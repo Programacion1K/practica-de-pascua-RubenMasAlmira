@@ -39,8 +39,6 @@ public class ListaNumeros implements Utilizable {
     @Override
     public void pideYAnyade() {
         lista.add(Integer.parseInt(JOptionPane.showInputDialog(null,"¿Número a añadir?")));
-
-
     }
 
 }
