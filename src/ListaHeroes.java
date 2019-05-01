@@ -31,22 +31,12 @@ public class ListaHeroes implements Utilizable{
             String nombreDelHeroeEnCreacion;
             String nombreHeroicoDelHeroeEnCreacion;
             double nvlDePoderDelHeroeEnCreacion;
-            do{
-                cadenaDelHeroeEnCreacion.add(leido.get(1));
-                cadenaDelHeroeEnCreacion.add(leido.get(2));
-                cadenaDelHeroeEnCreacion.add(leido.get(3));
-                leido.remove(1);
-                leido.remove(2);
-                leido.remove(3);
-
-                nombreDelHeroeEnCreacion = cadenaDelHeroeEnCreacion.get(1);
-                nombreHeroicoDelHeroeEnCreacion = cadenaDelHeroeEnCreacion.get(2).substring(cadenaDelHeroeEnCreacion.get(2).indexOf(':'));
-                nvlDePoderDelHeroeEnCreacion = Double.parseDouble(cadenaDelHeroeEnCreacion.get(3).substring(cadenaDelHeroeEnCreacion.get(3).indexOf(':')));
-
+            for(int i=0;i<leido.size();i++){
+                nombreDelHeroeEnCreacion=leido.get(i).substring(0,leido.get(i).indexOf('{'));
+                nombreHeroicoDelHeroeEnCreacion=leido.get(i).substring(leido.get(i).indexOf('{')+1,leido.get(i).indexOf('-'));
+                nvlDePoderDelHeroeEnCreacion=Double.parseDouble(leido.get(i).substring(leido.get(i).indexOf('-')+1,leido.get(i).indexOf('}')));
                 lista.add(new Heroe(nombreDelHeroeEnCreacion,nombreHeroicoDelHeroeEnCreacion,nvlDePoderDelHeroeEnCreacion));
-
-
-            }while(!leido.isEmpty());
+            }
 
 
         } catch (IOException ioe) {
@@ -58,7 +48,7 @@ public class ListaHeroes implements Utilizable{
     public void guardaEnFichero(File fichero) {
         try (PrintWriter salida = new PrintWriter(fichero)) {
             for (Heroe h:lista) {
-                salida.print(h.info()+"\n");
+                salida.print(h.toString()+"\n");
             }
 
         } catch (FileNotFoundException e) {
@@ -70,7 +60,7 @@ public class ListaHeroes implements Utilizable{
     @Override
     public void pideYAnyade() {
         JFrame salida=new JFrame("Nuevo Heroe");
-        JPanel panel=new PanelDeCreacionDeHeroe();
+        PanelDeCreacionDeHeroe panel=new PanelDeCreacionDeHeroe();
         JButton anyadirALaLista=new JButton("Crear Heroe");
 
 
@@ -84,9 +74,9 @@ public class ListaHeroes implements Utilizable{
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    String nombre = ((PanelDeCreacionDeHeroe) panel).getNombre().getText();
-                    String nombreHeroico = ((PanelDeCreacionDeHeroe) panel).getNombreHeroico().getText();
-                    double nivelDePoder = Double.parseDouble(((PanelDeCreacionDeHeroe) panel).getNivelDePoder().getText());
+                    String nombre =  panel.getNombre().getText();
+                    String nombreHeroico = panel.getNombreHeroico().getText();
+                    double nivelDePoder = Double.parseDouble(panel.getNivelDePoder().getText());
                     lista.add(new Heroe(nombre, nombreHeroico, nivelDePoder));
                     salida.dispose();
 

@@ -1,4 +1,6 @@
 import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Heroe {
@@ -15,7 +17,7 @@ public class Heroe {
         if(nombre==null){
             throw new IllegalArgumentException("El nombre introducido es incorrecto");
         }
-        this.nombre = nombre.toUpperCase();
+        this.nombre = nombre.substring(0,1).toUpperCase()+nombre.substring(1).toLowerCase();
 
 
         if(nivelDePoder<0 || nivelDePoder>100){
@@ -48,8 +50,7 @@ public class Heroe {
     }
 
     public String info() {
-
-        return nombre.toUpperCase()+"\nAlias:"+nombreHeroico+"\nNvl poder:"+nivelDePoder;
+        return nombre+"\nAlias:"+nombreHeroico+"\nNvl poder:"+nivelDePoder;
     }
 
     @Override
@@ -64,6 +65,21 @@ public class Heroe {
     @Override
     public int hashCode() {
         return Objects.hash(nombre, nombreHeroico);
+    }
+
+    public static void main(String[] args) {
+        List<String> leido=new ArrayList<>();
+        leido.add("1{1m-23.0}");
+        String nombreDelHeroeEnCreacion;
+        String nombreHeroicoDelHeroeEnCreacion;
+        String nvlDePoderDelHeroeEnCreacion;
+
+        nombreDelHeroeEnCreacion=leido.get(0).substring(0,leido.get(0).indexOf('{'));
+        nombreHeroicoDelHeroeEnCreacion=leido.get(0).substring(leido.get(0).indexOf('{')+1,leido.get(0).indexOf('-'));
+        nvlDePoderDelHeroeEnCreacion=leido.get(0).substring(leido.get(0).indexOf('-')+1,leido.get(0).indexOf('}'));
+        System.out.println(nombreDelHeroeEnCreacion);
+        System.out.println(nombreHeroicoDelHeroeEnCreacion);
+        System.out.println(nvlDePoderDelHeroeEnCreacion);
     }
 
 }
