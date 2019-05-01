@@ -9,8 +9,6 @@ import java.io.PrintWriter;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
-import java.util.stream.Collectors;
 
 public class ListaHeroes implements Utilizable{
     private List<Heroe> lista=new ArrayList<>();
@@ -28,14 +26,31 @@ public class ListaHeroes implements Utilizable{
     public void leeDeFichero(File fichero) {
         try {
             List<String> leido= Files.readAllLines(fichero.toPath());
-            String salida="";
-            for(String s:leido){
-                System.out.println(s);
-            }
+            List<String> cadenaDelHeroeEnCreacion=new ArrayList<>();
+
+            String nombreDelHeroeEnCreacion;
+            String nombreHeroicoDelHeroeEnCreacion;
+            double nvlDePoderDelHeroeEnCreacion;
+            do{
+                cadenaDelHeroeEnCreacion.add(leido.get(1));
+                cadenaDelHeroeEnCreacion.add(leido.get(2));
+                cadenaDelHeroeEnCreacion.add(leido.get(3));
+                leido.remove(1);
+                leido.remove(2);
+                leido.remove(3);
+
+                nombreDelHeroeEnCreacion = cadenaDelHeroeEnCreacion.get(1);
+                nombreHeroicoDelHeroeEnCreacion = cadenaDelHeroeEnCreacion.get(2).substring(cadenaDelHeroeEnCreacion.get(2).indexOf(':'));
+                nvlDePoderDelHeroeEnCreacion = Double.parseDouble(cadenaDelHeroeEnCreacion.get(3).substring(cadenaDelHeroeEnCreacion.get(3).indexOf(':')));
+
+                lista.add(new Heroe(nombreDelHeroeEnCreacion,nombreHeroicoDelHeroeEnCreacion,nvlDePoderDelHeroeEnCreacion));
 
 
-        } catch (IOException e) {
-            e.printStackTrace();
+            }while(!leido.isEmpty());
+
+
+        } catch (IOException ioe) {
+            JOptionPane.showMessageDialog(null,"No se ha podido leer el fichero correctamente","Error",JOptionPane.ERROR_MESSAGE);
         }
     }
 

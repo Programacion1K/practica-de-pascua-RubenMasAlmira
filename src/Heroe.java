@@ -15,7 +15,7 @@ public class Heroe {
         if(nombre==null){
             throw new IllegalArgumentException("El nombre introducido es incorrecto");
         }
-        this.nombre = nombre;
+        this.nombre = nombre.toUpperCase();
 
 
         if(nivelDePoder<0 || nivelDePoder>100){
@@ -24,10 +24,6 @@ public class Heroe {
         this.nivelDePoder=nivelDePoder;
 
     }
-
-   /* Heroe(String nombreHeroico,double nivelDePoder){
-        this("",nombreHeroico,nivelDePoder);
-    }*/
 
 
     public String getNombre() {
@@ -53,7 +49,7 @@ public class Heroe {
 
     public String info() {
 
-        return nombre+"{\nAlias:"+nombreHeroico+"\nNvl poder:"+nivelDePoder+"}";
+        return nombre.toUpperCase()+"\nAlias:"+nombreHeroico+"\nNvl poder:"+nivelDePoder;
     }
 
     @Override
