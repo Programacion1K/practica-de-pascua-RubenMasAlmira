@@ -40,6 +40,10 @@ public class ListaHeroes implements Utilizable{
 
         } catch (IOException ioe) {
             JOptionPane.showMessageDialog(null,"No se ha podido leer el fichero correctamente","Error",JOptionPane.ERROR_MESSAGE);
+        }catch (StringIndexOutOfBoundsException sioobe){
+            JOptionPane.showMessageDialog(null,"No se ha podido leer el fichero correctamente debido a que no tiene el formato adecuado para ello.","Error",JOptionPane.ERROR_MESSAGE);
+        }catch (NumberFormatException nfe){
+            JOptionPane.showMessageDialog(null,"No se ha podido leer el fichero correctamente debido a la introduccion de un nivel de poder erroneo","Error",JOptionPane.ERROR_MESSAGE);
         }
     }
 

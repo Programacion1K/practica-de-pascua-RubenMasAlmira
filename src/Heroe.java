@@ -1,6 +1,3 @@
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 public class Heroe {
@@ -50,7 +47,7 @@ public class Heroe {
     }
 
     public String info() {
-        return nombre+"\nAlias:"+nombreHeroico+"\nNvl poder:"+nivelDePoder;
+        return nombre+"\nAlias: "+nombreHeroico+"\nNvl poder: "+nivelDePoder;
     }
 
     @Override
